@@ -54,6 +54,7 @@ const Question = (props) => {
         >
           {parse(options[0])}
         </button>
+
         <button
           value={options[1]}
           onClick={handleOptionClick}
@@ -66,6 +67,7 @@ const Question = (props) => {
         >
           {parse(options[1])}
         </button>
+
         <button
           value={options[2]}
           onClick={handleOptionClick}
@@ -78,6 +80,7 @@ const Question = (props) => {
         >
           {parse(options[2])}
         </button>
+
         <button
           value={options[3]}
           onClick={handleOptionClick}

@@ -45,5 +45,6 @@
 }
 
 .quiz-section .submit-quiz:hover {
+  cursor: pointer;
   background-color: #293264;
 }
