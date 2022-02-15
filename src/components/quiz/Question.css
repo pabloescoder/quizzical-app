@@ -36,3 +36,17 @@
   opacity: 0.6;
   filter: alpha(opacity=60);
 }
+
+@media screen and (min-width: 1300px) {
+  .question:nth-of-type(1) {
+    padding-top: 5rem;
+  }
+  .question h2 {
+    font-size: 1.75rem;
+  }
+  .question button {
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+    border-radius: 12px;
+  }
+}
