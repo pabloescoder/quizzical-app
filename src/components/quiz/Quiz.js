@@ -11,11 +11,13 @@ const Quiz = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then((res) => res.json())
-      .then((data) => setQuestions(data.results))
-      .catch((err) => console.log(err));
-  }, []);
+    if (!submitted) {
+      fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+        .then((res) => res.json())
+        .then((data) => setQuestions(data.results))
+        .catch((err) => console.log(err));
+    }
+  }, [submitted]);
 
   useEffect(() => {
     if (questions.length !== 0) {
@@ -38,8 +40,18 @@ const Quiz = () => {
     ></Question>
   ));
 
-  const handleSubmit = () => {
-    setSubmitted(true);
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  const toggleSubmit = () => {
+    setSubmitted((prevState) => {
+      if (prevState) {
+        refreshPage();
+      } else {
+        return true;
+      }
+    });
   };
 
   return (
@@ -56,7 +68,7 @@ const Quiz = () => {
       )}
       <div className="submit-section">
         {submitted && <h2>You scored {totalScore}/5 correct answers</h2>}
-        <button className="submit-quiz" onClick={handleSubmit}>
+        <button className="submit-quiz" onClick={toggleSubmit}>
           {submitted ? "Play Again" : "Check Answers"}
         </button>
       </div>
