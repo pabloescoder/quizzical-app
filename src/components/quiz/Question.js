@@ -11,7 +11,7 @@ const Question = (props) => {
   };
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [options, setOptions] = useState(
+  const [options] = useState(
     shuffleArray([...props.incorrectOpt, props.correctOpt])
   );
 
@@ -23,6 +23,7 @@ const Question = (props) => {
         props.questionScore(0);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.submitted]);
 
   const handleOptionClick = (event) => {
