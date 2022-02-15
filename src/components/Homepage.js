@@ -13,7 +13,11 @@ const Homepage = (props) => {
       ></img>
       <div>
         <h2>Quizzical</h2>
-        <p>Test your knowledge based on random trivia questions</p>
+        <p>
+          Test your knowledge based on random trivia questions
+          <br />
+          PS: It's not going to be easy!
+        </p>
         <button onClick={props.showQuiz}>Start Quiz</button>
       </div>
       <img
