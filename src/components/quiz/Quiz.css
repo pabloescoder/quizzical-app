@@ -14,3 +14,12 @@
   bottom: 0;
   left: 0;
 }
+
+.quiz-section .fetching {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Karla, sans-serif;
+  color: #293264;
+}

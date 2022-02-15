@@ -6,8 +6,8 @@ import "./Quiz.css";
 
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
+  const [questionsLoaded, setQuestionsLoaded] = useState(false);
 
-  console.log(questions);
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())
@@ -15,10 +15,31 @@ const Quiz = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    if (questions.length != 0) {
+      setQuestionsLoaded(true);
+    }
+  }, [questions]);
+
+  const questionElements = questions.map((questionObj) => (
+    <Question
+      key={questionObj.question}
+      question={questionObj.question}
+      incorrectOpt={questionObj.incorrect_answers}
+      correctOpt={questionObj.correct_answer}
+    ></Question>
+  ));
+
   return (
     <main className="quiz-section">
       <img className="top" src={quizBlobTop}></img>
-      <Question></Question>
+      {questionsLoaded ? (
+        [...questionElements]
+      ) : (
+        <div className="fetching">
+          <h1>Fetching your questions...</h1>
+        </div>
+      )}
       <img className="bottom" src={quizBlobBottom}></img>
     </main>
   );

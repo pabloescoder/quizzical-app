@@ -7,7 +7,6 @@
 .question h2 {
   font-size: 1.5rem;
   margin: 0;
-  margin-bottom: 1rem;
 }
 
 .question button {
@@ -15,9 +14,5 @@
   font-size: 1rem;
   font-weight: 500;
   color: #293264;
-  margin: 0rem 1rem;
-}
-
-.question button:nth-of-type(1) {
-  margin-left: 0;
+  margin: 1rem 2rem 0 0;
 }
