@@ -3,16 +3,24 @@ import homepageBlobTop from "../images/homepage-blob-top.png";
 import homepageBlobBottom from "../images/homepage-blob-bottom.png";
 import "./Homepage.css";
 
-const Homepage = () => {
+const Homepage = (props) => {
   return (
     <main className="homepage">
-      <img className="top" src={homepageBlobTop}></img>
+      <img
+        className="top"
+        src={homepageBlobTop}
+        alt="page design element"
+      ></img>
       <div>
         <h2>Quizzical</h2>
         <p>Test your knowledge based on random trivia questions</p>
-        <button>Start Quiz</button>
+        <button onClick={props.showQuiz}>Start Quiz</button>
       </div>
-      <img className="bottom" src={homepageBlobBottom}></img>
+      <img
+        className="bottom"
+        src={homepageBlobBottom}
+        alt="page design element"
+      ></img>
     </main>
   );
 };

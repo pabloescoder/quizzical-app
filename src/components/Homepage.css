@@ -49,6 +49,10 @@ button {
   padding: 1rem 3rem 1rem 3rem;
 }
 
+.homepage button:hover {
+  background-color: #293264;
+}
+
 @media screen and (max-width: 900px) {
   .homepage h2 {
     font-size: 2.5rem;
@@ -74,7 +78,7 @@ button {
   }
 }
 
-@media screen and (min-width: 1160px) {
+@media screen and (min-width: 1400px) {
   .homepage div {
     padding: 0 1rem;
   }
