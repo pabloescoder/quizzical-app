@@ -50,6 +50,7 @@ button {
 }
 
 .homepage button:hover {
+  cursor: pointer;
   background-color: #293264;
 }
 

@@ -17,6 +17,17 @@ const Question = (props) => {
     options = shuffleArray(options);
   }, []);
 
+  useEffect(() => {
+    if (props.submitted) {
+      console.log(selectedAnswer, props.correctOpt);
+      if (selectedAnswer === props.correctOpt) {
+        props.questionScore(1);
+      } else {
+        props.questionScore(0);
+      }
+    }
+  }, [props.submitted]);
+
   const handleOptionClick = (event) => {
     setSelectedAnswer(event.target.value);
   };
@@ -34,6 +45,7 @@ const Question = (props) => {
         <button
           value={options[0]}
           onClick={handleOptionClick}
+          disabled={props.submitted}
           style={{
             backgroundColor:
               selectedAnswer === options[0] ? "#d6dbf5" : "#f5f7fb",
@@ -42,9 +54,11 @@ const Question = (props) => {
         >
           {parse(options[0])}
         </button>
+
         <button
           value={options[1]}
           onClick={handleOptionClick}
+          disabled={props.submitted}
           style={{
             backgroundColor:
               selectedAnswer === options[1] ? "#d6dbf5" : "#f5f7fb",
@@ -53,9 +67,11 @@ const Question = (props) => {
         >
           {parse(options[1])}
         </button>
+
         <button
           value={options[2]}
           onClick={handleOptionClick}
+          disabled={props.submitted}
           style={{
             backgroundColor:
               selectedAnswer === options[2] ? "#d6dbf5" : "#f5f7fb",
@@ -64,9 +80,11 @@ const Question = (props) => {
         >
           {parse(options[2])}
         </button>
+
         <button
           value={options[3]}
           onClick={handleOptionClick}
+          disabled={props.submitted}
           style={{
             backgroundColor:
               selectedAnswer === options[3] ? "#d6dbf5" : "#f5f7fb",
