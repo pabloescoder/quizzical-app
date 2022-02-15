@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Question.css";
 
 const Question = (props) => {
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  let options = [...props.incorrectOpt, props.correctOpt];
-
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -13,13 +10,13 @@ const Question = (props) => {
     return array;
   };
 
-  useEffect(() => {
-    options = shuffleArray(options);
-  }, []);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [options, setOptions] = useState(
+    shuffleArray([...props.incorrectOpt, props.correctOpt])
+  );
 
   useEffect(() => {
     if (props.submitted) {
-      console.log(selectedAnswer, props.correctOpt);
       if (selectedAnswer === props.correctOpt) {
         props.questionScore(1);
       } else {
@@ -38,62 +35,50 @@ const Question = (props) => {
       .body.textContent;
   };
 
+  const setStyles = (value) => {
+    const styles = {};
+    styles.disabled = false;
+    if (!props.submitted) {
+      if (selectedAnswer === value) {
+        styles.bgColor = "#d6dbf5";
+        styles.borderColor = "#d6dbf5";
+      } else {
+        styles.bgColor = "#f5f7fb";
+        styles.borderColor = "#4d5b9e";
+      }
+    } else {
+      if (value === props.correctOpt) {
+        styles.bgColor = "#41ed3b";
+      } else if (value !== selectedAnswer) {
+        styles.disabled = true;
+        styles.bgColor = "f5f7fb";
+      } else {
+        styles.disabled = true;
+        styles.bgColor = "#f8bcbc";
+      }
+    }
+    return styles;
+  };
+
+  const optionElements = options.map((option) => (
+    <button
+      key={option}
+      value={option}
+      onClick={handleOptionClick}
+      disabled={setStyles(option).disabled}
+      style={{
+        backgroundColor: setStyles(option).bgColor,
+        borderColor: setStyles(option).borderColor,
+      }}
+    >
+      {parse(option)}
+    </button>
+  ));
+
   return (
     <div className="question">
       <h2>{parse(props.question)}</h2>
-      <div className="options-section">
-        <button
-          value={options[0]}
-          onClick={handleOptionClick}
-          disabled={props.submitted}
-          style={{
-            backgroundColor:
-              selectedAnswer === options[0] ? "#d6dbf5" : "#f5f7fb",
-            borderColor: selectedAnswer === options[0] ? "#d6dbf5" : "#4d5b9e",
-          }}
-        >
-          {parse(options[0])}
-        </button>
-
-        <button
-          value={options[1]}
-          onClick={handleOptionClick}
-          disabled={props.submitted}
-          style={{
-            backgroundColor:
-              selectedAnswer === options[1] ? "#d6dbf5" : "#f5f7fb",
-            borderColor: selectedAnswer === options[1] ? "#d6dbf5" : "#4d5b9e",
-          }}
-        >
-          {parse(options[1])}
-        </button>
-
-        <button
-          value={options[2]}
-          onClick={handleOptionClick}
-          disabled={props.submitted}
-          style={{
-            backgroundColor:
-              selectedAnswer === options[2] ? "#d6dbf5" : "#f5f7fb",
-            borderColor: selectedAnswer === options[2] ? "#d6dbf5" : "#4d5b9e",
-          }}
-        >
-          {parse(options[2])}
-        </button>
-
-        <button
-          value={options[3]}
-          onClick={handleOptionClick}
-          disabled={props.submitted}
-          style={{
-            backgroundColor:
-              selectedAnswer === options[3] ? "#d6dbf5" : "#f5f7fb",
-            borderColor: selectedAnswer === options[3] ? "#d6dbf5" : "#4d5b9e",
-          }}
-        >
-          {parse(options[3])}
-        </button>
-      </div>
+      <div className="options-section">{optionElements}</div>
     </div>
   );
 };
