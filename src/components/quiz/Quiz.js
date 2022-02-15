@@ -7,6 +7,8 @@ import "./Quiz.css";
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [questionsLoaded, setQuestionsLoaded] = useState(false);
+  const [totalScore, setTotalScore] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -21,14 +23,24 @@ const Quiz = () => {
     }
   }, [questions]);
 
+  const questionScore = (score) => {
+    setTotalScore((prevScore) => prevScore + score);
+  };
+
   const questionElements = questions.map((questionObj) => (
     <Question
       key={questionObj.question}
       question={questionObj.question}
       incorrectOpt={questionObj.incorrect_answers}
       correctOpt={questionObj.correct_answer}
+      submitted={submitted}
+      questionScore={questionScore}
     ></Question>
   ));
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
 
   return (
     <main className="quiz-section">
@@ -42,8 +54,12 @@ const Quiz = () => {
           <h1>Fetching your questions...</h1>
         </div>
       )}
-
-      <button className="submit-quiz">Check Answers</button>
+      <div className="submit-section">
+        {submitted && <h2>You scored {totalScore}/5 correct answers</h2>}
+        <button className="submit-quiz" onClick={handleSubmit}>
+          {submitted ? "Play Again" : "Check Answers"}
+        </button>
+      </div>
 
       <img
         className="bottom"

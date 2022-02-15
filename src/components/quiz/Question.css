@@ -13,6 +13,7 @@
 .question button {
   padding: 0.5rem 2rem;
   font-size: 1rem;
+  font-family: Inter, sans-serif;
   font-weight: 500;
   color: #293264;
   border: 1px solid #293264;
