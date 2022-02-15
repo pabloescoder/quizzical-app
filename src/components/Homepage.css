@@ -74,7 +74,7 @@ button {
   }
 }
 
-@media screen and (min-width: 1160px) {
+@media screen and (min-width: 1400px) {
   .homepage div {
     padding: 0 1rem;
   }

@@ -1,0 +1,16 @@
+.quiz-section {
+  height: 100vh;
+  margin: 0 7.5%;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
