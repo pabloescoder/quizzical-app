@@ -16,7 +16,7 @@ const Quiz = () => {
   }, []);
 
   useEffect(() => {
-    if (questions.length != 0) {
+    if (questions.length !== 0) {
       setQuestionsLoaded(true);
     }
   }, [questions]);
@@ -32,7 +32,9 @@ const Quiz = () => {
 
   return (
     <main className="quiz-section">
-      <img className="top" src={quizBlobTop}></img>
+      {/* <pre>{JSON.stringify(questions, null, 2)}</pre> */}
+      <img className="top" src={quizBlobTop} alt="page design element"></img>
+
       {questionsLoaded ? (
         [...questionElements]
       ) : (
@@ -40,7 +42,14 @@ const Quiz = () => {
           <h1>Fetching your questions...</h1>
         </div>
       )}
-      <img className="bottom" src={quizBlobBottom}></img>
+
+      <button className="submit-quiz">Check Answers</button>
+
+      <img
+        className="bottom"
+        src={quizBlobBottom}
+        alt="page design element"
+      ></img>
     </main>
   );
 };
