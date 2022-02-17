@@ -18,7 +18,7 @@ const Homepage = (props) => {
           <br />
           PS: It's not going to be easy!
         </p>
-        <button onClick={props.showQuiz}>Start Quiz</button>
+        <button onClick={props.showCategory}>Start Quiz</button>
       </div>
       <img
         className="bottom"
