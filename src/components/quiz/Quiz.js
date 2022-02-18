@@ -106,9 +106,11 @@ const Quiz = ({ category, difficulty }) => {
       )}
       <div className="submit-section">
         {submitted && <h2>You scored {totalScore}/5 correct answers</h2>}
-        <button className="submit-quiz" onClick={toggleSubmit}>
-          {submitted ? "Play Again" : "Check Answers"}
-        </button>
+        {questionsLoaded && (
+          <button className="submit-quiz" onClick={toggleSubmit}>
+            {submitted ? "Play Again" : "Check Answers"}
+          </button>
+        )}
       </div>
 
       <img
