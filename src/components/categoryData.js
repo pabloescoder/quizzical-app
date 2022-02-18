@@ -1,4 +1,4 @@
-export default [
+const categoryData = [
   { id: 0, title: "Random" },
   { id: 9, title: "General Knowledge" },
   { id: 10, title: "Books" },
@@ -25,3 +25,5 @@ export default [
   { id: 31, title: "Anime" },
   { id: 32, title: "Cartoons" },
 ];
+
+export default categoryData;
