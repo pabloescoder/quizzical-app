@@ -1,5 +1,6 @@
 import React from "react";
 import categoryData from "./categoryData";
+import "./Category.css";
 
 const Category = (props) => {
   const difficultyChoices = [
@@ -8,9 +9,25 @@ const Category = (props) => {
     { title: "hard" },
   ];
 
+  const setStyles = (state, value) => {
+    const styles = {};
+    if (state === value) {
+      styles.bgColor = "#d6dbf5";
+      styles.borderColor = "#d6dbf5";
+    } else {
+      styles.bgColor = "#f5f7fb";
+      styles.borderColor = "#4d5b9e";
+    }
+    return styles;
+  };
+
   const difficultyElements = difficultyChoices.map((obj) => (
     <button
       value={obj.title}
+      style={{
+        backgroundColor: setStyles(props.difficulty, obj.title).bgColor,
+        borderColor: setStyles(props.difficulty, obj.title).borderColor,
+      }}
       onClick={() => props.setDifficulty(obj.title)}
       key={obj.title}
     >{`${obj.title[0].toUpperCase()}${obj.title.slice(1)}`}</button>
@@ -20,6 +37,10 @@ const Category = (props) => {
     <button
       key={buttonObj.id}
       value={buttonObj.id}
+      style={{
+        backgroundColor: setStyles(props.category, buttonObj.id).bgColor,
+        borderColor: setStyles(props.category, buttonObj.id).borderColor,
+      }}
       onClick={() => props.setCategory(buttonObj.id)}
     >
       {buttonObj.title}
@@ -36,7 +57,9 @@ const Category = (props) => {
         <h2>Choose a difficulty</h2>
         {difficultyElements}
       </div>
-      <button onClick={props.startQuiz}>Start Quiz!</button>
+      <button id="start-quiz" onClick={props.startQuiz}>
+        Let's Go!
+      </button>
     </div>
   );
 };

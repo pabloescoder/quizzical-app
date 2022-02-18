@@ -12,11 +12,11 @@ const Quiz = ({ category, difficulty }) => {
 
   const getFetchURL = () => {
     let url;
-    if (category !== 0 && difficulty !== "") {
+    if (category !== -1 && difficulty !== "") {
       url = `https://opentdb.com/api.php?amount=5&type=multiple&category=${category}&difficulty=${difficulty}`;
-    } else if (category === 0 && difficulty !== "") {
+    } else if (category === -1 && difficulty !== "") {
       url = `https://opentdb.com/api.php?amount=5&type=multiple&difficulty=${difficulty}`;
-    } else if (category !== 0 && difficulty === "") {
+    } else if (category !== -1 && difficulty === "") {
       url = `https://opentdb.com/api.php?amount=5&type=multiple&category=${category}`;
     } else {
       url = "https://opentdb.com/api.php?amount=5&type=multiple";

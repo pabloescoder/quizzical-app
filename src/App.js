@@ -7,7 +7,7 @@ import Category from "./components/Category";
 const App = () => {
   const [isHomeVisible, setIsHomeVisible] = useState(true);
   const [isCategoryVisible, setisCategoryVisible] = useState(false);
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState(-1);
   const [difficulty, setDifficulty] = useState("");
 
   const showCategory = () => {
@@ -27,6 +27,8 @@ const App = () => {
           startQuiz={startQuiz}
           setCategory={setCategory}
           setDifficulty={setDifficulty}
+          category={category}
+          difficulty={difficulty}
         ></Category>
       )}
       {!isHomeVisible && !isCategoryVisible && (
