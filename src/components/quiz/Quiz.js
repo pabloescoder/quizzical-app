@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import quizBlobTop from "../../images/quiz-blob-top.png";
 import quizBlobBottom from "../../images/quiz-blob-bottom.png";
 import Question from "./Question";
+import Confetti from "react-confetti";
+import useWindowSize from "./useWindowSize";
 import "./Quiz.css";
 
 const Quiz = ({ category, difficulty }) => {
@@ -9,6 +11,18 @@ const Quiz = ({ category, difficulty }) => {
   const [questionsLoaded, setQuestionsLoaded] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+
+  let { width, height } = useWindowSize();
+  const body = document.body;
+  const html = document.documentElement;
+  height = Math.max(
+    height,
+    body.scrollHeight,
+    body.offsetHeight,
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
+  );
 
   const getFetchURL = () => {
     let url;
@@ -72,6 +86,14 @@ const Quiz = ({ category, difficulty }) => {
 
   return (
     <main className="quiz-section">
+      {submitted && totalScore === 5 && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={300}
+          initialVelocityY={20}
+        />
+      )}
       {/* <pre>{JSON.stringify(questions, null, 2)}</pre> */}
       <img className="top" src={quizBlobTop} alt="page design element"></img>
 
