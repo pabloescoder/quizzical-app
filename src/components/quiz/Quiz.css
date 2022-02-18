@@ -19,6 +19,7 @@
 .quiz-section .fetching {
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   height: 100vh;
   font-family: Karla, sans-serif;
@@ -64,6 +65,7 @@
 
 @media screen and (max-width: 480px) {
   .quiz-section .submit-section {
+    padding-top: 1.25rem;
     flex-direction: column;
   }
   .quiz-section .submit-section h2 {
@@ -87,7 +89,7 @@
     font-size: 1.5rem;
   }
   .quiz-section .top {
-    width: 20%;
+    width: 15%;
   }
   .quiz-section .bottom {
     width: 10%;

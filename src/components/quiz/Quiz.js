@@ -4,19 +4,35 @@ import quizBlobBottom from "../../images/quiz-blob-bottom.png";
 import Question from "./Question";
 import "./Quiz.css";
 
-const Quiz = () => {
+const Quiz = ({ category, difficulty }) => {
   const [questions, setQuestions] = useState([]);
   const [questionsLoaded, setQuestionsLoaded] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
+  const getFetchURL = () => {
+    let url;
+    if (category !== -1 && difficulty !== "") {
+      url = `https://opentdb.com/api.php?amount=5&type=multiple&category=${category}&difficulty=${difficulty}`;
+    } else if (category === -1 && difficulty !== "") {
+      url = `https://opentdb.com/api.php?amount=5&type=multiple&difficulty=${difficulty}`;
+    } else if (category !== -1 && difficulty === "") {
+      url = `https://opentdb.com/api.php?amount=5&type=multiple&category=${category}`;
+    } else {
+      url = "https://opentdb.com/api.php?amount=5&type=multiple";
+    }
+    return url;
+  };
+
   useEffect(() => {
     if (!submitted) {
-      fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+      const url = getFetchURL();
+      fetch(url)
         .then((res) => res.json())
         .then((data) => setQuestions(data.results))
         .catch((err) => console.log(err));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitted]);
 
   useEffect(() => {
